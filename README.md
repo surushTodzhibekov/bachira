@@ -1,6 +1,6 @@
 # Bachira E-Commerce Landing Page
 
-![Bachira Landing Page Preview](./preview.png)
+![Bachira Landing Page Preview](https://surushtodzhibekov.github.io/bachira/#products)
 
 A modern, responsive e-commerce landing page built with React, TypeScript, and Tailwind CSS based on the Figma design.
 
