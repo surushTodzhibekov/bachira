@@ -5,6 +5,18 @@ import heroImage from "../assets/images/hero_image.png";
 const Hero: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute("href");
+    if (href && href.startsWith("#")) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        setIsMenuOpen(false);
+      }
+    }
+  };
+
   return (
     <section className="relative bg-white overflow-hidden">
       {/* Navigation */}
@@ -18,33 +30,31 @@ const Hero: React.FC = () => {
           <div className="hidden lg:flex items-center space-x-10">
             <a
               href="#home"
+              onClick={handleScrollToSection}
               className="text-base font-medium text-gray-900 hover:text-[#3C9379] transition"
             >
               Home
             </a>
             <a
               href="#products"
+              onClick={handleScrollToSection}
               className="text-base font-medium text-gray-500 hover:text-[#3C9379] transition"
             >
               Products
             </a>
             <a
               href="#categories"
+              onClick={handleScrollToSection}
               className="text-base font-medium text-gray-500 hover:text-[#3C9379] transition"
             >
               Categories
             </a>
             <a
               href="#brands"
+              onClick={handleScrollToSection}
               className="text-base font-medium text-gray-500 hover:text-[#3C9379] transition"
             >
               Brands
-            </a>
-            <a
-              href="#pricing"
-              className="text-base font-medium text-gray-500 hover:text-[#3C9379] transition"
-            >
-              Pricing
             </a>
           </div>
 
@@ -87,34 +97,33 @@ const Hero: React.FC = () => {
             <div className="flex flex-col space-y-3">
               <a
                 href="#home"
+                onClick={handleScrollToSection}
                 className="text-sm font-medium text-gray-900 hover:text-[#3C9379] transition py-2"
               >
                 Home
               </a>
               <a
                 href="#products"
+                onClick={handleScrollToSection}
                 className="text-sm font-medium text-gray-500 hover:text-[#3C9379] transition py-2"
               >
                 Products
               </a>
               <a
                 href="#categories"
+                onClick={handleScrollToSection}
                 className="text-sm font-medium text-gray-500 hover:text-[#3C9379] transition py-2"
               >
                 Categories
               </a>
               <a
                 href="#brands"
+                onClick={handleScrollToSection}
                 className="text-sm font-medium text-gray-500 hover:text-[#3C9379] transition py-2"
               >
                 Brands
               </a>
-              <a
-                href="#pricing"
-                className="text-sm font-medium text-gray-500 hover:text-[#3C9379] transition py-2"
-              >
-                Pricing
-              </a>
+
               <button className="text-sm font-medium text-gray-900 hover:text-[#3C9379] transition py-2 text-left">
                 Login
               </button>
