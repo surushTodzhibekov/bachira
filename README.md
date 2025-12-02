@@ -1,5 +1,7 @@
 # Bachira E-Commerce Landing Page
 
+![Bachira Landing Page Preview](./preview.png)
+
 A modern, responsive e-commerce landing page built with React, TypeScript, and Tailwind CSS based on the Figma design.
 
 ## Features
@@ -29,22 +31,30 @@ This landing page is implemented from a Figma design and includes:
 
 - Node.js (v16 or higher)
 - npm or yarn
+- Git
 
 ### Installation
 
-1. Install dependencies:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/surushTodzhibekov/bachira.git
+cd bachira
+```
+
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Start the development server:
+3. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-3. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:5173`
 
 ### Build for Production
 
@@ -62,6 +72,66 @@ To preview the production build locally:
 
 ```bash
 npm run preview
+```
+
+## Deployment to GitHub Pages
+
+This project is configured to be deployed on GitHub Pages. Follow these steps:
+
+### 1. Update `vite.config.ts`
+
+Ensure your `vite.config.ts` includes the base path:
+
+```typescript
+export default defineConfig({
+  plugins: [react()],
+  base: "/bachira/", // Replace 'bachira' with your repository name if different
+});
+```
+
+### 2. Deploy
+
+Run the build command and push to GitHub:
+
+```bash
+npm run build
+git add dist/
+git commit -m "Deploy to GitHub Pages"
+git push origin main
+```
+
+### 3. Configure GitHub Pages
+
+1. Go to your repository settings on GitHub
+2. Navigate to **Pages** section
+3. Under "Source", select **GitHub Actions**
+4. The site will be available at: `https://surushTodzhibekov.github.io/bachira/`
+
+### Automated Deployment (Optional)
+
+Create a `.github/workflows/deploy.yml` file for automatic deployment:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - run: npm install
+      - run: npm run build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
 ```
 
 ## Project Structure
